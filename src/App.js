@@ -9,12 +9,7 @@ class App extends Component{
       this.state = {
          mapLocation: {lat: 47.6062095, lng: -122.3320708},
          activeCourses: [],
-         scriptLoaded: false
       }
-   }
-
-   handleScriptLoad = () => {
-   this.setState({ scriptLoaded: true })
    }
 
    componentDidMount(){
@@ -69,17 +64,12 @@ class App extends Component{
   render() {
      return(
     <div>
-      <Script url="http://maps.googleapis.com/maps/api/js?key=AIzaSyAntpQHNnQ1VhJKBJ8ikMKb7HZ-g83JxKA&libraries=places"
-     onLoad={this.handleScriptLoad}
-         />
-      {this.state.scriptLoaded ?
       <Home
          updateLatLongWithSearch={this.updateLatLongWithSearch}
          updateLatLongWithClick={this.updateLatLongWithClick}
          mapLocation={this.state.mapLocation}
          activeCourses={this.state.activeCourses}
          />
-      :null}
     </div>
   );
 }
