@@ -29,18 +29,22 @@ class App extends Component{
       })
    }
 
-   updateLatLongWithSearch = (latLng) => {
-      console.log(latLng.lat)
+   updateLatLongWithSearch = (ev) => {
+      // console.log(ev.coordinates.lng)
+      // this.setState({mapLocation: {lat: ev.coordinates.lat, lat: ev.coordinates.lng}})
+      this.setState({
+         // activeCourses: json.courses,
+         mapLocation: {lat: ev.coordinates.lat, lng: ev.coordinates.lng}
+      })
       fetch('http://localhost:3000/latlong',{
            method: 'POST',
            headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-           body: JSON.stringify(latLng)
+           body: JSON.stringify(this.state.mapLocation)
          })
       .then(response => response.json())
       .then(json => {
          this.setState({
             activeCourses: json.courses,
-            mapLocation: latLng
          })
       })
    }

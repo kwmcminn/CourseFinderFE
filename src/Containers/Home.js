@@ -9,16 +9,17 @@ class Home extends Component {
    constructor(props){
       super(props)
       this.state = {}
-      
+
    }
 
+   // <AutocompleteSearch updateLatLongWithSearch={this.props.updateLatLongWithSearch}/>
 
    render() {
       return (
          <div className="home">
             <NavBar />
             <div className='search-map'>
-               <AutocompleteSearch updateLatLongWithSearch={this.props.updateLatLongWithSearch}/>
+               <Geolocator updateLatLongWithSearch={this.props.updateLatLongWithSearch}/>
                <MapContainer
                   activeCourses={this.props.activeCourses}
                   mapLocation={this.props.mapLocation}

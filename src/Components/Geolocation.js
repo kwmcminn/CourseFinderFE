@@ -24,7 +24,7 @@ class Geolocator extends Component {
           coordinates={true}
           locationBoxStyle={'custom-style'}
           locationListStyle={'custom-style-list'}
-          onChange={(e) => { this.setState({ place: e }) }} />
+          onChange={(ev) => this.props.updateLatLongWithSearch(ev)} />
       </div>
 
     )
