@@ -28,17 +28,10 @@ class AutocompleteSearch extends React.Component {
       .catch(error => console.error('Error', error));
   };
 
-  handleScriptLoad = () => {
-  this.setState({ scriptLoaded: true })
-}
+
 
   render() {
     return (
-      <div className='search-bar-div'>
-      <Script url="http://maps.googleapis.com/maps/api/js?key=AIzaSyAntpQHNnQ1VhJKBJ8ikMKb7HZ-g83JxKA&libraries=places"
-     onLoad={this.handleScriptLoad}
-         />
-         {this.state.scriptLoaded ?
          <PlacesAutocomplete
            value={this.state.address}
            onChange={this.handleChange}
@@ -77,8 +70,6 @@ class AutocompleteSearch extends React.Component {
              </div>
            )}
          </PlacesAutocomplete>
-         : null}
-      </div>
     );
   }
 }
