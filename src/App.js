@@ -13,7 +13,14 @@ class App extends Component{
    }
 
    componentDidMount(){
-      fetch('http://localhost:3000')
+      navigator.geolocation.getCurrentPosition(location => {
+      this.setState({mapLocation: {lat: location.coords.latitude, lng: location.coords.longitude}})
+   })
+      fetch('http://localhost:3000/latlong',{
+           method: 'POST',
+           headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+           body: JSON.stringify(this.state.mapLocation)
+         })
       .then(response => response.json())
       .then(json => {
          this.setState({
@@ -38,12 +45,28 @@ class App extends Component{
       })
    }
 
+   updateLatLongWithClick = (ev) => {
+      fetch('http://localhost:3000/latlong',{
+           method: 'POST',
+           headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+           body: JSON.stringify({lat: ev.latLng.lat(), lng: ev.latLng.lng()})
+         })
+      .then(response => response.json())
+      .then(json => {
+         this.setState({
+            activeCourses: json.courses,
+            mapLocation: {lat: ev.latLng.lat(), lng: ev.latLng.lng()}
+         })
+      })
+   }
+
 
   render() {
      return(
     <div>
       <Home
          updateLatLongWithSearch={this.updateLatLongWithSearch}
+         updateLatLongWithClick={this.updateLatLongWithClick}
          mapLocation={this.state.mapLocation}
          activeCourses={this.state.activeCourses}
          />

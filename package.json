@@ -4,8 +4,12 @@
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
+    "react-async-script-loader": "^0.3.0",
     "react-dom": "^16.8.6",
+    "react-geolocation": "^1.0.4",
+    "react-google-location": "^1.2.2",
     "react-google-maps": "^9.4.5",
+    "react-load-script": "0.0.6",
     "react-places-autocomplete": "^7.2.1",
     "react-redux": "^7.0.2",
     "react-scripts": "3.0.0"

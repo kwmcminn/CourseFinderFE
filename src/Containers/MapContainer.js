@@ -5,9 +5,16 @@ export default class CourseMapContainer extends React.Component {
 		constructor(props){
 			super(props)
 			this.state = {
-				currentLocation: { lat:  42.3601, lng: -71.0589 }
+				currentLocation: { lat:  42.3601, lng: -71.0589 },
+				activeMarker: null
 			}
 		}
+
+		closeInfoWindows = (courseID) => {
+			this.setState({activeMarker: courseID})
+		}
+
+
 	render() {
 		return (
 		<CourseMap
@@ -16,7 +23,10 @@ export default class CourseMapContainer extends React.Component {
 			containerElement={<div className='main-map' />}
 			mapElement={<div style={{ height: `100%` }} />}
 			activeCourses={this.props.activeCourses}
+			activeMarker={this.state.activeMarker}
 			mapLocation={this.props.mapLocation}
+			closeInfoWindows={this.closeInfoWindows}
+			updateLatLongWithClick={this.props.updateLatLongWithClick}
 			/>
 		);
 	}
