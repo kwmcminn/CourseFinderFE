@@ -14,7 +14,9 @@ class Home extends Component {
          <div className="home">
             <NavBar />
             <div className='search-map'>
-               <AutocompleteSearch updateLatLongWithSearch={this.props.updateLatLongWithSearch}/>
+               {window.google && <MapContainer />
+               ?<AutocompleteSearch updateLatLongWithSearch={this.props.updateLatLongWithSearch}/>
+            : null}
                <MapContainer activeCourses={this.props.activeCourses} mapLocation={this.props.mapLocation}/>
             </div>
          </div>
