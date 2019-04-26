@@ -1,14 +1,17 @@
 import React from "react";
-import { Marker } from "react-google-maps";
+import { Marker, InfoWindow } from "react-google-maps";
 import DiscIcon from "../imgs/DiscIcon.png";
 
 export default class CourseMarker extends React.Component {
-   // position={this.props.location}
-
+   constructor(props){
+      super(props)
+   }
   render(){
     return(
         <Marker
-          icon={DiscIcon}
+         onClick={this.openInfoBox}
+         className='course-marker'
+         position={ { lat: parseFloat(this.props.course.latitude), lng: parseFloat(this.props.course.longitude) } }
         >
         </Marker>
     );

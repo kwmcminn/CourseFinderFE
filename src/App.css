@@ -1,10 +1,48 @@
+body{
+   margin: 0%;
+   }
+
 .main-map{
-   height: 80vh;
-   width: 95vw;
+   height: 95%;
+   width: 100vw;
    grid-row: 2;
+   position: relative;
+   z-index: 1;
 }
 
 .home{
    display: grid;
-   grid-template-rows: 5% 1fr 10%;
+   grid-template-rows: 5% 1fr 6%;
+   height: 100vh;
+   background-color: black;
+}
+
+.nav-bar{
+   grid-row: 1;
+   color: white;
+}
+
+.course-marker{
+   width: 10px;
+}
+
+.search-bar{
+   grid-row: 2;
+   height: 5%;
+   position: relative;
+   z-index: 2;
+}
+
+.location-search-input{
+   width: 100%;
+   height: 100%;
+}
+
+.autocomplete-dropdown-container{
+   grid-row:2;
+}
+
+.search-map{
+   display: flex;
+   flex-direction: column;
 }

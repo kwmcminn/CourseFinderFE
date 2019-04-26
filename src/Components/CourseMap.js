@@ -3,13 +3,13 @@ import { withScriptjs, withGoogleMap, GoogleMap } from "react-google-maps";
 import CourseMarker from "./Marker";
 
 const CourseMap = withScriptjs(withGoogleMap((props) =>{
-
+   console.log(props.activeCourses.length)
   return (
       <GoogleMap
-        defaultZoom={12}
-        center={ { lat:  42.3601, lng: -71.0589 } }
+        defaultZoom={10}
+        center={props.mapLocation}
         >
-
+        {props.activeCourses.length > 0 ? props.activeCourses.map((course,index) => <CourseMarker key={index} course={course} />) : null}
       </GoogleMap>
     );
   }
