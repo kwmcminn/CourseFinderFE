@@ -5,7 +5,7 @@ import CourseMarker from "./CourseMarker";
 const CourseMap = withScriptjs(withGoogleMap((props) =>{
   return (
       <GoogleMap
-        defaultZoom={9}
+        defaultZoom={10}
         center={props.mapLocation}
         onClick={(ev) => props.updateLatLongWithClick(ev)}
         >

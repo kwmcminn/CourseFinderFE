@@ -19,7 +19,8 @@ body{
 
 .nav-bar{
    grid-row: 1;
-   color: white;
+   color: gray;
+   text-align: center;
 }
 
 .course-marker{
@@ -31,9 +32,10 @@ body{
    height: 5%;
    position: relative;
    z-index: 2;
+
 }
 
-.location-search-input{
+.location-box-cover{
    width: 100%;
    height: 100%;
 }
@@ -45,6 +47,8 @@ body{
 .search-map{
    display: flex;
    flex-direction: column;
+   border-top: solid;
+   border-width: thin;
 }
 
 /* .search-bar-div{
@@ -53,4 +57,11 @@ body{
 
 .custom-style{
    width: 100%;
+   height: 100%;
+}
+
+.custom-style-list{
+   border: solid;
+   border-width: 1px;
+   background: white;
 }

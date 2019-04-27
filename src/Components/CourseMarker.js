@@ -1,5 +1,6 @@
 import React from "react";
 import { Marker, InfoWindow } from "react-google-maps";
+import CourseInfoCard from './CourseInfoCard'
 
 export default class CourseMarker extends React.Component {
   state = {
@@ -28,7 +29,7 @@ export default class CourseMarker extends React.Component {
       >
          {this.state.infoWindowActive && this.props.activeMarker === this.props.course.course_id ?
             <InfoWindow maxWidth={800} defaultPosition={ this.props.location } onCloseClick={this.props.onToggleOpen}>
-              <h4>{this.props.course.course_name}</h4>
+              <CourseInfoCard course={this.props.course} />
             </InfoWindow>
             :
             null}

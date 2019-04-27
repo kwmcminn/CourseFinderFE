@@ -15,7 +15,7 @@ class Geolocator extends Component {
 
   render() {
     return (
-      <div >
+      <div className='search-bar'>
          <GoogleComponent
 
           apiKey={API_KEY}
