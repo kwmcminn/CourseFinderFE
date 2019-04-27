@@ -62,6 +62,9 @@ body{
 
 .custom-style-list{
    border: solid;
+   height: 5vh;
    border-width: 1px;
    background: white;
+   display: flex;
+   align-items: center;
 }
