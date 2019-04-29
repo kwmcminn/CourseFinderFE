@@ -11,3 +11,4 @@ const CourseInfoCard = props => {
   );
 };
 export default CourseInfoCard;
+//random comment for heroku
