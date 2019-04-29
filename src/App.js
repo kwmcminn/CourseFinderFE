@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Home from './Containers/Home';
-import Script from 'react-load-script';
+import SidebarMenu from './Layouts/Sidebar'
+import NavBar from './Layouts/NavBar';
 
 class App extends Component{
    constructor(props){
@@ -9,6 +10,7 @@ class App extends Component{
       this.state = {
          mapLocation: {lat: 47.6062095, lng: -122.3320708},
          activeCourses: [],
+         sidebarVisible: true
       }
    }
 
@@ -30,7 +32,7 @@ class App extends Component{
    }
 
    updateLatLongWithSearch = (ev) => {
-      // console.log(ev.coordinates.lng)
+      console.log(ev.coordinates.lng)
       // this.setState({mapLocation: {lat: ev.coordinates.lat, lat: ev.coordinates.lng}})
       this.setState({
          // activeCourses: json.courses,
@@ -64,16 +66,32 @@ class App extends Component{
       })
    }
 
+   hambugerMenu = () => {
+      this.setState({
+         sidebarVisible: !this.state.sidebarVisible
+      })
+   }
+
+   collapseHamburger = () => {
+      if (this.state.sidebarVisible === true){
+         this.setState({
+            sidebarVisible: false
+         })
+      }
+   }
+
 
   render() {
      return(
-    <div>
-      <Home
+    <div className='main-container' onClick={() => this.collapseHamburger()}>
+      <NavBar hambugerMenu={this.hambugerMenu}/>
+      <SidebarMenu
+         sidebarVisible={this.state.sidebarVisible}
+         className='home'
          updateLatLongWithSearch={this.updateLatLongWithSearch}
          updateLatLongWithClick={this.updateLatLongWithClick}
          mapLocation={this.state.mapLocation}
-         activeCourses={this.state.activeCourses}
-         />
+         activeCourses={this.state.activeCourses}/>
     </div>
   );
 }

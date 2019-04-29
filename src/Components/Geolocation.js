@@ -1,9 +1,7 @@
 import { GoogleComponent } from 'react-google-location'
-
-//...
 import React, { Component } from 'react';
 
-const API_KEY = 'AIzaSyAVHvbROyraUihanYHqMuWRd3k_7Aqm84E'  // how to get key - step are below
+const API_KEY = 'AIzaSyAVHvbROyraUihanYHqMuWRd3k_7Aqm84E'
 
 class Geolocator extends Component {
   constructor(props) {
@@ -17,7 +15,6 @@ class Geolocator extends Component {
     return (
       <div className='search-bar'>
          <GoogleComponent
-
           apiKey={API_KEY}
           language={'en'}
           country={'country:in|country:us'}

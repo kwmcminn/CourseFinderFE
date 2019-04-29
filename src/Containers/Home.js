@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NavBar from '../Components/NavBar'
+
 import Geolocator from '../Components/Geolocation'
 import AutocompleteSearch from '../Components/AutocompleteSearch'
 import MapContainer from './MapContainer';
@@ -17,7 +17,6 @@ class Home extends Component {
    render() {
       return (
          <div className="home">
-            <NavBar />
             <div className='search-map'>
                <Geolocator updateLatLongWithSearch={this.props.updateLatLongWithSearch}/>
                <MapContainer

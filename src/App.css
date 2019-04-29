@@ -2,37 +2,40 @@ body{
    margin: 0%;
    }
 
+.main-container{
+   display: grid;
+   grid-template-rows: 5.2% 1fr 6%;
+   height: 100vh;
+}
+
+.home-container{
+   padding: 0 !important;
+   height: 100%
+}
+.side-bar-menu{
+   grid-row: 2/4;
+   z-index: 2;
+   position: relative;
+}
 .main-map{
-   height: 95%;
-   width: 100vw;
+   height: 100%;
    grid-row: 2;
    position: relative;
    z-index: 1;
 }
 
 .home{
+   grid-row: 2;
    display: grid;
-   grid-template-rows: 5% 1fr 6%;
-   height: 100vh;
-   /* background-color: black; */
+   height: 100%;
+   background-color: black;
 }
 
-.nav-bar{
-   grid-row: 1;
-   color: gray;
-   text-align: center;
-}
-
-.course-marker{
-   width: 10px;
-}
 
 .search-bar{
-   grid-row: 2;
+   grid-row: 1;
    height: 5%;
-   position: relative;
    z-index: 2;
-
 }
 
 .location-box-cover{
@@ -40,20 +43,25 @@ body{
    height: 100%;
 }
 
-.autocomplete-dropdown-container{
-   grid-row:2;
-}
-
 .search-map{
    display: flex;
    flex-direction: column;
-   border-top: solid;
-   border-width: thin;
+   height: 100%;
+   grid-template-rows: 10% 90%;
+   position: relative;
+   z-index: 1;
 }
 
-/* .search-bar-div{
-   height: 10%;
-} */
+.nav-bar{
+   grid-row: 1;
+}
+
+.ui.menu {
+  border: 0 none !important;
+  border-radius: 0 !important;
+  box-shadow: none;
+
+}
 
 .custom-style{
    width: 100%;
@@ -62,9 +70,10 @@ body{
 
 .custom-style-list{
    border: solid;
-   height: 5vh;
+   height: 7vh;
    border-width: 1px;
    background: white;
    display: flex;
    align-items: center;
+   padding-left: 2%;
 }
