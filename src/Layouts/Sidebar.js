@@ -1,54 +1,48 @@
 import React, { Component, createRef } from 'react';
 import Home from '../Containers/Home'
-import {
-  Button,
-  Header,
-  Image,
-  Menu,
-  Ref,
-  Segment,
-  Sidebar,
-} from 'semantic-ui-react'
-
+import RoundContainer from '../Containers/RoundContainer'
+import {Button, HeaderImage, Menu, Ref, Segment, Sidebar} from 'semantic-ui-react'
 export default class SidebarMenu extends Component {
-  state = { visible: true}
-  segmentRef = createRef()
-
-  handleHideClick = () => this.setState({ visible: false })
-  handleShowClick = () => this.setState({ visible: true })
-
-  handleSidebarHide = () => this.setState({ visible: false })
 
   render() {
+     let currentDisplay
+       if(this.props.pageDisplayed === 'Home'){
+          currentDisplay = <Home
+             handleSidebar={this.props.handleSidebar}
+             sidebarVisible={this.props.sidebarVisible}
+             className='home'
+             updateLatLongWithSearch={this.props.updateLatLongWithSearch}
+             updateLatLongWithClick={this.props.updateLatLongWithClick}
+             mapLocation={this.props.mapLocation}
+             activeCourses={this.props.activeCourses}/>
+       }
+       else if (this.props.pageDisplayed === 'Profile'){
+         currentDisplay = <RoundContainer showScoreCard={this.props.showScoreCard} userRounds={this.props.userRounds}/>
+     }
 
     return (
       <div>
-        <Sidebar.Pushable as={Segment.Group} className='side-bar-menu' raised>
-          <Sidebar
-            as={Menu}
-            animation='overlay'
-            icon='labeled'
-            inverted
-            onHide={this.handleSidebarHide}
-            vertical
-            target={this.segmentRef}
-            visible={this.props.sidebarVisible}
-            width='thin'
-          >
-            <Menu.Item as='a'>Home</Menu.Item>
-            <Menu.Item as='a'>Games</Menu.Item>
-            <Menu.Item as='a'>Channels</Menu.Item>
-          </Sidebar>
+           <Sidebar.Pushable as={Segment.Group} className='side-bar-menu' raised>
+             <Sidebar
+               as={Menu}
+               animation='overlay'
+               icon='labeled'
+               inverted
+               onHide={this.handleSidebarHide}
+               vertical
+               target={this.segmentRef}
+               visible={this.props.sidebarVisible}
+               width='thin'
+             >
+                  <Menu.Item onClick={() => this.props.displayPageSidebar('Home')} as='a'>Home</Menu.Item>
+                  <Menu.Item onClick={() => this.props.displayPageSidebar('Profile')} as='a' >Profile</Menu.Item>
+                  <Menu.Item onClick={() => this.props.displayPageSidebar()} as='a'>Log Out</Menu.Item>
+               </Sidebar>
 
-          <Segment className='home-container'>
-            <Home
-               className='home'
-               updateLatLongWithSearch={this.props.updateLatLongWithSearch}
-               updateLatLongWithClick={this.props.updateLatLongWithClick}
-               mapLocation={this.props.mapLocation}
-               activeCourses={this.props.activeCourses}/>
-          </Segment>
-        </Sidebar.Pushable>
+             <Segment className='home-container'>
+               {currentDisplay}
+             </Segment>
+           </Sidebar.Pushable>
       </div>
     )
   }

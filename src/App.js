@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
-import Home from './Containers/Home';
+import './CSS/App.css';
 import SidebarMenu from './Layouts/Sidebar'
 import NavBar from './Layouts/NavBar';
+
 
 class App extends Component{
    constructor(props){
@@ -10,7 +10,10 @@ class App extends Component{
       this.state = {
          mapLocation: {lat: 47.6062095, lng: -122.3320708},
          activeCourses: [],
-         sidebarVisible: true
+         userRounds: [],
+         roundDisplayed: [],
+         sidebarVisible: false,
+         pageDisplayed: 'Home'
       }
    }
 
@@ -18,6 +21,11 @@ class App extends Component{
       navigator.geolocation.getCurrentPosition(location => {
       this.setState({mapLocation: {lat: location.coords.latitude, lng: location.coords.longitude}})
    })
+      this.fetchCourses();
+      this.fetchUserRounds()
+   }
+
+   fetchCourses = () => {
       fetch('http://localhost:3000/latlong',{
            method: 'POST',
            headers: {'Content-Type': 'application/json', Accept: 'application/json'},
@@ -31,11 +39,19 @@ class App extends Component{
       })
    }
 
+   fetchUserRounds = () => {
+      fetch('http://localhost:3000/rounds')
+      .then(response => response.json())
+      .then(json => {
+         this.setState({
+            userRounds: json
+         })
+      })
+   }
+
    updateLatLongWithSearch = (ev) => {
       console.log(ev.coordinates.lng)
-      // this.setState({mapLocation: {lat: ev.coordinates.lat, lat: ev.coordinates.lng}})
       this.setState({
-         // activeCourses: json.courses,
          mapLocation: {lat: ev.coordinates.lat, lng: ev.coordinates.lng}
       })
       fetch('http://localhost:3000/latlong',{
@@ -52,46 +68,62 @@ class App extends Component{
    }
 
    updateLatLongWithClick = (ev) => {
-      fetch('http://localhost:3000/latlong',{
-           method: 'POST',
-           headers: {'Content-Type': 'application/json', Accept: 'application/json'},
-           body: JSON.stringify({lat: ev.latLng.lat(), lng: ev.latLng.lng()})
-         })
-      .then(response => response.json())
-      .then(json => {
-         this.setState({
-            activeCourses: json.courses,
-            mapLocation: {lat: ev.latLng.lat(), lng: ev.latLng.lng()}
-         })
-      })
-   }
-
-   hambugerMenu = () => {
-      this.setState({
-         sidebarVisible: !this.state.sidebarVisible
-      })
-   }
-
-   collapseHamburger = () => {
-      if (this.state.sidebarVisible === true){
+      if(this.state.sidebarVisible === true){
          this.setState({
             sidebarVisible: false
          })
       }
+      else{
+         fetch('http://localhost:3000/latlong',{
+              method: 'POST',
+              headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+              body: JSON.stringify({lat: ev.latLng.lat(), lng: ev.latLng.lng()})
+            })
+         .then(response => response.json())
+         .then(json => {
+            this.setState({
+               activeCourses: json.courses,
+               mapLocation: {lat: ev.latLng.lat(), lng: ev.latLng.lng()}
+            })
+         })
+      }
    }
 
+   displayPageSidebar = (page) => {
+      console.log(page)
+      this.setState({
+         sidebarVisible: !this.state.sidebarVisible,
+         pageDisplayed: page
+      })
+   }
+
+   handleHamburger = () => {
+      this.setState({
+         sidebarVisible: !this.state.sidebarVisible,
+      })
+   }
+
+   showScoreCard = (round, pageDisplayed) => {
+      console.log(round, pageDisplayed)
+   }
 
   render() {
      return(
-    <div className='main-container' onClick={() => this.collapseHamburger()}>
-      <NavBar hambugerMenu={this.hambugerMenu}/>
-      <SidebarMenu
-         sidebarVisible={this.state.sidebarVisible}
-         className='home'
-         updateLatLongWithSearch={this.updateLatLongWithSearch}
-         updateLatLongWithClick={this.updateLatLongWithClick}
-         mapLocation={this.state.mapLocation}
-         activeCourses={this.state.activeCourses}/>
+        <div>
+          <div className='main-container'>
+            <NavBar handleHamburger={this.handleHamburger}/>
+            <SidebarMenu
+               pageDisplayed={this.state.pageDisplayed}
+               displayPageSidebar={this.displayPageSidebar}
+               sidebarVisible={this.state.sidebarVisible}
+               className='home'
+               updateLatLongWithSearch={this.updateLatLongWithSearch}
+               updateLatLongWithClick={this.updateLatLongWithClick}
+               mapLocation={this.state.mapLocation}
+               activeCourses={this.state.activeCourses}
+               userRounds={this.state.userRounds}
+               showScoreCard={this.showScoreCard}/>
+          </div>
     </div>
   );
 }

@@ -14,7 +14,6 @@ export default class CourseMarker extends React.Component {
     this.setState({infoWindowActive: !this.state.infoWindowActive})
    }
 
-
   render() {
     return (
       <div>

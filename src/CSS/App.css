@@ -1,11 +1,9 @@
-body{
-   margin: 0%;
-   }
 
 .main-container{
    display: grid;
    grid-template-rows: 5.2% 1fr 6%;
    height: 100vh;
+   background-color: rgb(27, 28, 29)
 }
 
 .home-container{
@@ -65,7 +63,11 @@ body{
 
 .custom-style{
    width: 100%;
-   height: 100%;
+   height: 110%;
+   border: 0px;
+   padding: 0px;
+   border-radius: 2%;
+   padding-left: 4%;
 }
 
 .custom-style-list{
@@ -75,5 +77,10 @@ body{
    background: white;
    display: flex;
    align-items: center;
-   padding-left: 2%;
+}
+
+#navvy{
+   background-color: rgb(27, 28, 29);
+   color: white;
+   margin-bottom: 0px !important;
 }
