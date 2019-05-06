@@ -60,3 +60,58 @@
 .round-course-name{
    width: 80%
 }
+
+.score-title{
+   font-size: 3vh;
+}
+
+.holes-container{
+   width: 98%;
+   display: flex;
+   flex-wrap: wrap;
+   align-content: space-evenly;
+   min-height: 60vh;
+   margin-left: 1.4%;
+}
+
+.score-card-hole{
+   width: 11%;
+   height: 15vh;
+   display: flex;
+   flex-direction: column;
+}
+
+.hole-number{
+   border: solid;
+   height: 25%;
+   text-align: center;
+   font-size: 2vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.shot-number{
+    border: solid;
+    height: 50%;
+    text-align: center;
+    font-size: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+
+   #score-modal{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+   }
+
+   #hole-score{
+      font-size: 8vh;
+   }
+
+#submit-score-button{
+   display: flex;
+   justify-content: center;
+}

@@ -11,9 +11,11 @@ class App extends Component{
          mapLocation: {lat: 47.6062095, lng: -122.3320708},
          activeCourses: [],
          userRounds: [],
+         newRound: [],
          roundDisplayed: [],
          sidebarVisible: false,
-         pageDisplayed: 'Home'
+         pageDisplayed: 'Home',
+         currentUser: null
       }
    }
 
@@ -45,6 +47,21 @@ class App extends Component{
       .then(json => {
          this.setState({
             userRounds: json
+         })
+      })
+   }
+
+   newRound = (courseId, holes) => {
+      fetch('http://localhost:3000/rounds',{
+           method: 'POST',
+           headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+           body: JSON.stringify({user_id: 1, course_id: courseId, hole_amount: holes})
+         })
+      .then(response => response.json())
+      .then(json => {
+         this.setState({
+            roundDisplayed: json,
+            pageDisplayed: 'ScoreCard'
          })
       })
    }
@@ -103,8 +120,12 @@ class App extends Component{
       })
    }
 
-   showScoreCard = (round, pageDisplayed) => {
-      console.log(round, pageDisplayed)
+   showScoreCard = (round, ScoreCard) => {
+      console.log(round, ScoreCard)
+      this.setState({
+         roundDisplayed: round,
+         pageDisplayed: ScoreCard
+      })
    }
 
   render() {
@@ -113,16 +134,14 @@ class App extends Component{
           <div className='main-container'>
             <NavBar handleHamburger={this.handleHamburger}/>
             <SidebarMenu
-               pageDisplayed={this.state.pageDisplayed}
+               stateCopy = {this.state}
                displayPageSidebar={this.displayPageSidebar}
-               sidebarVisible={this.state.sidebarVisible}
                className='home'
                updateLatLongWithSearch={this.updateLatLongWithSearch}
                updateLatLongWithClick={this.updateLatLongWithClick}
-               mapLocation={this.state.mapLocation}
-               activeCourses={this.state.activeCourses}
-               userRounds={this.state.userRounds}
-               showScoreCard={this.showScoreCard}/>
+               showScoreCard={this.showScoreCard}
+               newRound={this.newRound}/>
+
           </div>
     </div>
   );

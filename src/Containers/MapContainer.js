@@ -27,6 +27,7 @@ export default class CourseMapContainer extends React.Component {
 			mapLocation={this.props.mapLocation}
 			closeInfoWindows={this.closeInfoWindows}
 			updateLatLongWithClick={this.props.updateLatLongWithClick}
+			newRound={this.props.newRound}
 			/>
 		);
 	}

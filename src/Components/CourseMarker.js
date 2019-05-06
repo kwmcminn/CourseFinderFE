@@ -29,8 +29,8 @@ export default class CourseMarker extends React.Component {
         icon={Basket}
       >
          {this.state.infoWindowActive && this.props.activeMarker === this.props.course.course_id ?
-            <InfoWindow maxWidth={800} defaultPosition={ this.props.location } onCloseClick={this.props.onToggleOpen}>
-              <CourseInfoCard course={this.props.course} />
+            <InfoWindow MaxWidth={400} defaultPosition={ this.props.location } onCloseClick={this.props.onToggleOpen}>
+              <CourseInfoCard newRound={this.props.newRound} course={this.props.course} />
             </InfoWindow>
             :
             null}

@@ -11,6 +11,7 @@ const CourseMap = withScriptjs(withGoogleMap((props) =>{
         >
         {props.activeCourses ? props.activeCourses.map((course,index) =>
            <CourseMarker
+             newRound={props.newRound}
              closeInfoWindows={props.closeInfoWindows}
              activeMarker={props.activeMarker}
              key={index} course={course} />)

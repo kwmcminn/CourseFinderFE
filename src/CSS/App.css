@@ -84,3 +84,8 @@
    color: white;
    margin-bottom: 0px !important;
 }
+
+.course-links{
+   display: flex;
+   justify-content: space-between;
+}

@@ -32,7 +32,7 @@ class Round extends React.Component {
                      <h1 className='round-course-name'>{this.state.course.course_name}</h1>
                   </div>
                   <div className='round-score'>
-                     <h1>{this.props.round.score.total}</h1>
+                     <h1>Add Score!</h1>
                   </div>
                </div>}
          </div>

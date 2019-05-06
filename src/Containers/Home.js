@@ -21,6 +21,7 @@ class Home extends Component {
                   activeCourses={this.props.activeCourses}
                   mapLocation={this.props.mapLocation}
                   updateLatLongWithClick={this.props.updateLatLongWithClick}
+                  newRound={this.props.newRound}
                   />
             </div>
          </div>
