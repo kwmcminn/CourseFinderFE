@@ -2,6 +2,9 @@
   "name": "course_finder_fe",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.3.0"
+  },
   "dependencies": {
     "react": "^16.8.6",
     "react-async-script-loader": "^0.3.0",
