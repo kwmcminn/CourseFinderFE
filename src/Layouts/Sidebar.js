@@ -20,10 +20,10 @@ export default class SidebarMenu extends Component {
              newRound={this.props.newRound}/>
        }
        else if (this.props.stateCopy.pageDisplayed === 'Profile'){
-         currentDisplay = <RoundContainer showScoreCard={this.props.showScoreCard} userRounds={this.props.stateCopy.userRounds}/>
+         currentDisplay = <RoundContainer showScoreCard={this.props.showScoreCard} userRounds={this.props.stateCopy.userRounds} />
      }
       else if (this.props.stateCopy.pageDisplayed === 'ScoreCard'){
-         currentDisplay = <ScoreCard roundDisplayed={this.props.stateCopy.roundDisplayed} />
+         currentDisplay = <ScoreCard roundDisplayed={this.props.stateCopy.roundDisplayed} handleDelete={this.props.handleDelete} fetchUpdatedRounds={this.props.fetchUpdatedRounds}/>
       }
     return (
       <div>
@@ -39,13 +39,13 @@ export default class SidebarMenu extends Component {
                visible={this.props.stateCopy.sidebarVisible}
                width='thin'
              >
-                  <Menu.Item onClick={() => this.props.displayPageSidebar('Home')} as='a'>Main Map
+                  <Menu.Item id='side-bar-option'onClick={() => this.props.displayPageSidebar('Home')} as='a'>Main Map
                      <Icon name='map marker alternate' size='big'/>
                   </Menu.Item>
-                  <Menu.Item onClick={() => this.props.displayPageSidebar('Profile')} as='a' >Profile
+                  <Menu.Item id='side-bar-option' onClick={() => this.props.displayPageSidebar('Profile')} as='a' >Profile
                      <Icon name='clipboard' size='big'/>
                   </Menu.Item>
-                  <Menu.Item onClick={() => this.props.displayPageSidebar()} as='a'>Log Out
+                  <Menu.Item id='side-bar-option' onClick={() => this.props.displayPageSidebar()} as='a'>Log Out
                      <Icon name='log out' size='big'/>
                   </Menu.Item>
                </Sidebar>

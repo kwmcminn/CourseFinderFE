@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../CSS/Round.css'
 import ScoreModal from './ScoreModal';
 import ReactLoading from 'react-loading';
+import {Button} from 'semantic-ui-react'
 
 class ScoreCard extends Component {
    state = {
@@ -60,8 +61,17 @@ class ScoreCard extends Component {
      }
     this.setState({
       currentScore: total
-   })
+   }, () => this.props.fetchUpdatedRounds())
  }
+
+ deleteRound(){
+    fetch(`http://localhost:3000/rounds/${this.props.roundDisplayed.id}`, {
+     headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+     method: 'DELETE',
+    })
+    .then(res => res.json())
+    .then(json => this.props.handleDelete(json))
+}
 
    render() {
       return (
@@ -90,6 +100,11 @@ class ScoreCard extends Component {
                   closeModal={this.closeModal}
                   submitScore = {this.submitScore}
                   /> : null}
+            {this.state.holes ?
+               <div id='delete-button'>
+                  <button class="ui secondary button" onClick={() => this.deleteRound()}> Delete Round</button>
+               </div>
+               : null}
          </div>
       );
    }

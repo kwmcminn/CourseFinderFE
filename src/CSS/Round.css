@@ -38,15 +38,17 @@
 
 .round-stats{
    display: grid;
-   grid-template-columns: 70% 30%;
-   width: 90%;
+   grid-template-columns: 60% 40%;
+   width: 95%;
 }
 
 .round-score{
    grid-column: 2;
    display: flex;
+   flex-direction: column;
    align-items: center;
-   justify-content: center;
+   justify-content: space-evenly;
+   font-size: 2.5vh;
 }
 
 .round-course-name-div{
@@ -58,7 +60,7 @@
 }
 
 .round-course-name{
-   width: 80%
+
 }
 
 .score-title{
@@ -112,6 +114,43 @@
    }
 
 #submit-score-button{
+   display: flex;
+   justify-content: center;
+}
+
+#side-bar-option{
+   height: 20vh;
+   font-size: 3vh;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+#hamburger{
+   font-size: 3vh;
+}
+
+#footer{
+   grid-row: 3;
+   font-size: 1.7vh;
+   color: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgb(27, 28, 29);
+}
+
+.red{
+   color: red;
+   border-width: 3px;
+}
+
+.green{
+   color: green;
+   border-width: 3px;
+}
+
+#delete-button{
    display: flex;
    justify-content: center;
 }

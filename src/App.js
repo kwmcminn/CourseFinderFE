@@ -60,8 +60,9 @@ class App extends Component{
       .then(response => response.json())
       .then(json => {
          this.setState({
-            roundDisplayed: json,
-            pageDisplayed: 'ScoreCard'
+            roundDisplayed: json[json.length - 1],
+            pageDisplayed: 'ScoreCard',
+            userRounds: json
          })
       })
    }
@@ -128,6 +129,23 @@ class App extends Component{
       })
    }
 
+   handleDelete = (json) => {
+      this.setState({
+         pageDisplayed: 'Profile',
+         userRounds: json
+      })
+   }
+
+   fetchUpdatedRounds = () => {
+      fetch('http://localhost:3000/rounds')
+      .then(response => response.json())
+      .then(json => {
+         this.setState({
+            userRounds: json
+         })
+      })
+   }
+
   render() {
      return(
         <div>
@@ -140,7 +158,9 @@ class App extends Component{
                updateLatLongWithSearch={this.updateLatLongWithSearch}
                updateLatLongWithClick={this.updateLatLongWithClick}
                showScoreCard={this.showScoreCard}
-               newRound={this.newRound}/>
+               newRound={this.newRound}
+               handleDelete={this.handleDelete}
+               fetchUpdatedRounds={this.fetchUpdatedRounds}/>
 
           </div>
     </div>

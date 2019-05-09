@@ -8,14 +8,14 @@ class NavBar extends Component {
 
    render() {
       return (
+         <>
          <Menu fixed borderless className='nav-bar' id='navvy'>
             <Menu.Item onClick={()=>this.props.handleHamburger()}>
-               <Icon fitted inverted color='grey' name='bars'/>
-            </Menu.Item>
-            <Menu.Item position='right' onClick={()=>console.log('hi')}>
-               <Icon inverted color='grey' name='ellipsis vertical' />
+               <Icon id='hamburger' fitted inverted color='grey' name='bars'/>
             </Menu.Item>
          </Menu>
+         <div id='footer'> <span>Created by Kevin McMinn 2019</span></div>
+         </>
       );
    }
 
