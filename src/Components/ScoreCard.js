@@ -13,14 +13,14 @@ class ScoreCard extends Component {
 
    componentDidMount(){
       let total = 0
-      fetch('http://circlesedgebe.herokuapp.com/user_rounds',{
+      fetch('https://circlesedgebe.herokuapp.com/user_rounds',{
            method: 'POST',
            headers: {'Content-Type': 'application/json', Accept: 'application/json'},
            body: JSON.stringify(this.props.roundDisplayed)
          })
       .then(response => response.json())
       .then(json => this.setState({courseDisplayed: json.courses[0]}))
-      .then(fetch(`http://circlesedgebe.herokuapp.com/rounds/${this.state.course.id}`)
+      .then(fetch(`https://circlesedgebe.herokuapp.com/rounds/${this.state.course.id}`)
          .then(res => res.json())
          .then(json => this.setState({
             holes: json
@@ -47,7 +47,7 @@ class ScoreCard extends Component {
    }
 
    submitScore = (hole) => {
-      fetch(`http://circlesedgebe.herokuapp.com/holes/${hole.id}`, {
+      fetch(`https://circlesedgebe.herokuapp.com/holes/${hole.id}`, {
         headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         method: 'PUT',
         body: JSON.stringify(hole)
@@ -70,7 +70,7 @@ class ScoreCard extends Component {
  }
 
  deleteRound(){
-    fetch(`http://circlesedgebe.herokuapp.com/rounds/${this.props.roundDisplayed.id}`, {
+    fetch(`https://circlesedgebe.herokuapp.com/rounds/${this.props.roundDisplayed.id}`, {
      headers: {'Content-Type': 'application/json', Accept: 'application/json'},
      method: 'DELETE',
     })

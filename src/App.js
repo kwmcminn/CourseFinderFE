@@ -33,7 +33,7 @@ class App extends Component{
 
 
    fetchCourses = () => {
-      fetch('http://circlesedgebe.herokuapp.com/latlong',{
+      fetch('https://circlesedgebe.herokuapp.com/latlong',{
            method: 'POST',
            headers: {'Content-Type': 'application/json', Accept: 'application/json'},
            body: JSON.stringify(this.state.mapLocation)
@@ -51,7 +51,7 @@ class App extends Component{
    }
 
    fetchUserRounds = () => {
-      fetch('http://circlesedgebe.herokuapp.com/rounds')
+      fetch('https://circlesedgebe.herokuapp.com/rounds')
       .then(response => response.json())
       .then(json => {
          this.setState({
@@ -61,7 +61,7 @@ class App extends Component{
    }
 
    newRound = (courseId, holes) => {
-      fetch('http://circlesedgebe.herokuapp.com/rounds',{
+      fetch('https://circlesedgebe.herokuapp.com/rounds',{
            method: 'POST',
            headers: {'Content-Type': 'application/json', Accept: 'application/json'},
            body: JSON.stringify({user_id: 1, course_id: courseId, hole_amount: holes})
@@ -82,7 +82,7 @@ class App extends Component{
       this.setState({
          mapLocation: {lat: ev.coordinates.lat, lng: ev.coordinates.lng}
       })
-      fetch('http://circlesedgebe.herokuapp.com/latlong',{
+      fetch('https://circlesedgebe.herokuapp.com/latlong',{
            method: 'POST',
            headers: {'Content-Type': 'application/json', Accept: 'application/json'},
            body: JSON.stringify(this.state.mapLocation)
@@ -102,7 +102,7 @@ class App extends Component{
          })
       }
       else{
-         fetch('http://circlesedgebe.herokuapp.com/latlong',{
+         fetch('https://circlesedgebe.herokuapp.com/latlong',{
               method: 'POST',
               headers: {'Content-Type': 'application/json', Accept: 'application/json'},
               body: JSON.stringify({lat: ev.latLng.lat(), lng: ev.latLng.lng()})
@@ -147,7 +147,7 @@ class App extends Component{
    }
 
    fetchUpdatedRounds = () => {
-      fetch('http://circlesedgebe.herokuapp.com/rounds')
+      fetch('https://circlesedgebe.herokuapp.com/rounds')
       .then(response => response.json())
       .then(json => {
          this.setState({

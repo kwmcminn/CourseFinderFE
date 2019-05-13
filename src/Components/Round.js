@@ -13,7 +13,7 @@ class Round extends React.Component {
 
    componentDidMount(){
       let score = 0
-      fetch('http://circlesedgebe.herokuapp.com/user_rounds',{
+      fetch('https://circlesedgebe.herokuapp.com/user_rounds',{
            method: 'POST',
            headers: {'Content-Type': 'application/json', Accept: 'application/json'},
            body: JSON.stringify(this.props.round)
