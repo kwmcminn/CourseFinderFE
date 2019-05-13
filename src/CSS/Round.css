@@ -1,13 +1,13 @@
 .round-container{
    display: flex;
    flex-direction: column;
-   justify-content: center;
    align-items: center;
    background-color: rgb(27, 28, 29);
+   min-height: 100%;
 }
 
 .round-card{
-   width: 98%;
+   width: 98vw;
    min-height: 20vh;
    border: solid;
    border-width: thin;
@@ -15,7 +15,10 @@
    margin-top: 1%;
    background-color: white;
    display: flex;
-   justify-content: space-around;
+   justify-content: center;
+   display: grid;
+   grid-template-rows: 80% 20%;
+   padding: 5px;
 }
 
 .profile-header{
@@ -38,8 +41,9 @@
 
 .round-stats{
    display: grid;
+   grid-row: 1;
    grid-template-columns: 60% 40%;
-   width: 95%;
+   width: 95vw;
 }
 
 .round-score{
@@ -153,4 +157,13 @@
 #delete-button{
    display: flex;
    justify-content: center;
+}
+
+.hole-indicator-div{
+   grid-row: 2;
+   display: flex;
+   justify-content: baseline;
+   max-width: 74%;
+   flex-wrap: wrap;
+   align-items: flex-end;
 }

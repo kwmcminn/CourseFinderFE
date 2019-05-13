@@ -6,7 +6,9 @@ import {Button} from 'semantic-ui-react'
 
 class ScoreCard extends Component {
    state = {
-      display: false
+      display: false,
+      course: this.props.roundDisplayed,
+      stateCopy: this.props.stateCopy
    }
 
    componentDidMount(){
@@ -17,17 +19,19 @@ class ScoreCard extends Component {
            body: JSON.stringify(this.props.roundDisplayed)
          })
       .then(response => response.json())
-      .then(json =>
-         this.setState({
-            course: json.courses[0]
-         }))
-      fetch(`http://localhost:3000/rounds/${this.props.roundDisplayed.id}`)
+      .then(json => this.setState({courseDisplayed: json.courses[0]}))
+      .then(fetch(`http://localhost:3000/rounds/${this.state.course.id}`)
          .then(res => res.json())
          .then(json => this.setState({
             holes: json
          }, () => this.totalScore())
-      )
+      ))
    }
+
+   // getCourseName(){
+   //    debugger
+   //    console.log('hi!!!!!!!!!!!!!')
+   // }
 
    showModal = (hole) => {
       this.setState({
@@ -55,6 +59,7 @@ class ScoreCard extends Component {
   }
 
   totalScore = () => {
+     // this.getCourseName()
      let total = 0
      for(let i = 0; i < this.state.holes.length - 1; i++){
         total += this.state.holes[i].total
@@ -79,7 +84,7 @@ class ScoreCard extends Component {
             {this.state.holes && this.state.course ?
                <>
                   <div className='profile-header score-title'>
-                     <div>{this.state.course.course_name}</div>
+                     <div>{this.state.courseDisplayed ? this.state.courseDisplayed.course_name : null}</div>
                      <div className='total-score'>Total Score: {this.state.currentScore}</div>
                   </div>
                   <div className='holes-container'>

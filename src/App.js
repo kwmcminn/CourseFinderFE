@@ -8,24 +8,29 @@ class App extends Component{
    constructor(props){
       super(props)
       this.state = {
-         mapLocation: {lat: 47.6062095, lng: -122.3320708},
+         mapLocation: {lat: 36.97, lng: -122.03},
          activeCourses: [],
          userRounds: [],
          newRound: [],
-         roundDisplayed: [],
          sidebarVisible: false,
          pageDisplayed: 'Home',
-         currentUser: null
+         currentUser: null,
       }
    }
 
    componentDidMount(){
-      navigator.geolocation.getCurrentPosition(location => {
-      this.setState({mapLocation: {lat: location.coords.latitude, lng: location.coords.longitude}})
-   })
-      this.fetchCourses();
       this.fetchUserRounds()
+      this.fetchCourses()
+      this.getLocation()
    }
+
+   getLocation(){
+      navigator.geolocation.getCurrentPosition(location => {
+         this.setState({mapLocation: {lat: location.coords.latitude, lng: location.coords.longitude}})
+         this.fetchCourses()
+      })
+   }
+
 
    fetchCourses = () => {
       fetch('http://localhost:3000/latlong',{
@@ -39,6 +44,10 @@ class App extends Component{
             activeCourses: json.courses
          })
       })
+   }
+
+   fetchCoursesWithGeo = () => {
+      console.log('geo', this.state.mapLocation)
    }
 
    fetchUserRounds = () => {
@@ -59,10 +68,11 @@ class App extends Component{
          })
       .then(response => response.json())
       .then(json => {
+         console.log('new rounddddd',json)
          this.setState({
-            roundDisplayed: json[json.length - 1],
             pageDisplayed: 'ScoreCard',
-            userRounds: json
+            userRounds: json,
+            roundDisplayed: json[0]
          })
       })
    }
@@ -160,8 +170,8 @@ class App extends Component{
                showScoreCard={this.showScoreCard}
                newRound={this.newRound}
                handleDelete={this.handleDelete}
+               roundDisplayed={this.state.roundDisplayed}
                fetchUpdatedRounds={this.fetchUpdatedRounds}/>
-
           </div>
     </div>
   );

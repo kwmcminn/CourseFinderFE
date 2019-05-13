@@ -1,6 +1,7 @@
 import React from 'react';
 import '../CSS/Round.css'
 import ReactLoading from 'react-loading';
+import {Icon} from 'semantic-ui-react'
 
 class Round extends React.Component {
    constructor(props){
@@ -25,13 +26,13 @@ class Round extends React.Component {
       })
       .then(this.tallyScore())
       .then(this.tallyHoles())
+      .then(this.orderHoles())
    }
 
    tallyScore(){
       let score = 0
       for(let i = 0; i < this.props.round.holes.length; i++){
          score = score + this.props.round.holes[i].total
-         console.log(score)
       }
       this.setState({
          totalScore: score
@@ -46,22 +47,33 @@ class Round extends React.Component {
          }
       }
       this.setState({
-         holesCompleted: holes
+         holesCompleted: holes,
+
+      })
+   }
+
+   orderHoles(){
+      let holes
+      holes = this.props.round.holes.sort((a, b) => a.id-b.id)
+      this.setState({
+         showHoles: holes
       })
    }
    render() {
       return (
          <div className='round-card' onClick ={() => this.props.showScoreCard(this.props.round, 'ScoreCard')} >
             {this.state.course === null ? <ReactLoading /> :
-               <div className='round-stats'>
+               <><div className='round-stats'>
                   <div className='round-course-name-div'>
                      <h2 className='round-course-name'>{this.state.course.course_name}</h2>
                   </div>
                   <div className='round-score'>
                      <div>Total Score: {this.state.totalScore ? this.state.totalScore : 0}</div>
-                     <div className={this.state.holesCompleted === this.props.round.holes.length ? 'green' : 'red'}>Holes: {this.state.holesCompleted}/{this.props.round.holes.length}</div>
                   </div>
-               </div>}
+               </div>
+            <div className='hole-indicator-div'>{this.state.showHoles.map(hole => hole.total > 0 ? <Icon className='hole-indicator' size='small' name='circle'/> : <Icon className='hole-indicator' size='small' name='circle outline'/>)}</div>
+            </>
+         }
          </div>
       );
    }

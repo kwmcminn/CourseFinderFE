@@ -42,7 +42,7 @@ export default class SidebarMenu extends Component {
                   <Menu.Item id='side-bar-option'onClick={() => this.props.displayPageSidebar('Home')} as='a'>Main Map
                      <Icon name='map marker alternate' size='big'/>
                   </Menu.Item>
-                  <Menu.Item id='side-bar-option' onClick={() => this.props.displayPageSidebar('Profile')} as='a' >Profile
+                  <Menu.Item id='side-bar-option' onClick={() => this.props.displayPageSidebar('Profile')} as='a' >My Rounds
                      <Icon name='clipboard' size='big'/>
                   </Menu.Item>
                   <Menu.Item id='side-bar-option' onClick={() => this.props.displayPageSidebar()} as='a'>Log Out
